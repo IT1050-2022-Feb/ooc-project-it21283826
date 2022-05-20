@@ -1,0 +1,146 @@
+//RentCar.h
+#pragma once
+#include "Booking.h"
+#include "Renting.h"
+#include "CarOwner.h"
+#include "Buyer.h"
+#include "Staff.h"
+#define SIZE1 2
+#define SIZE2 2
+class RentCar
+{
+private:
+int rentcarID;
+char rentcarLoctaion[50];
+double rentcarPrice;
+char rentcarFacilities[50];
+double rentcarUtilityPrice;
+char rentcarStatus[50];
+int count = 0;
+Booking* book[SIZE1];
+Renting* rent[SIZE2];
+CarOwner* carowner;
+Buyer* buyer;
+Staff* staff;
+public:
+RentCar();
+RentCar(int rent1, int rent2, int book1, int book2,CarOwner* pcarowner, Buyer* pbuyer,Staff* pstaff);
+void rentcarDetails(int rentcID, const char rentcLocation, double rentcPrice, const char rentcFacility, double rentcUtiPrice, const char rentcStatus , CarOwner* pcarowner , Buyer* pbuyer , Staff* pstaff);
+void deleteRentCarDetails();
+void updateRentCarDetails();
+void calculateRentCarPrice();
+void displayRentCDetails();
+void checkAvailability();
+~RentCar();
+};
+
+//RentCar.cpp
+#pragma once
+#include "RentCar.h"
+#define SIZE1 2
+#define SIZE2 2
+RentCar::RentCar()
+{
+}
+RentCar::RentCar(int rent1,int rent2,int book1,int book2,CarOwner* pcarowner,Buyer*pbuyer,Staff* pstaff)
+{
+   rent[0] = new Renting(rent1);
+   rent[1] = new Renting(rent2);
+   book[0] = new Booking(book1);
+   book[1] = new Booking(book2);
+  
+  carowner = pcarowner;
+  buyer = pbuyer;
+  staff = pstaff;
+}
+    void RentCar::rentcarDetails(int rentcID,const char rentcLocation,double rentcPrice,const char rentcFacility,double rentUtiPrice,const char rentcStatus,CarOwner* pcarowner,Buyer* pbuyer,Staff*pstaff)
+  {
+  }
+ void RentCar::deleteRentCarDetails()
+  {
+  }
+void RentCar::updateRentCarDetails()
+  {
+  }
+
+ void RentCar::calculateRentCarPrice()
+ {
+ }
+ void RentCar::displayRentCDetails()
+  {
+  }
+ void RentCar::checkAvailability()
+  {
+  }
+ RentCar::~RentCar()
+  {
+//Destructor 
+   for (int i = 0; i < SIZE1; i++)
+    {
+       delete book[i];
+    }
+   for (int i = 0; i < SIZE2; i++)
+    {
+      delete rent[i];
+    }
+}
+
+//Staff.h
+#pragma once
+#include "RentCar.h"
+#define SIZE 5
+class Staff
+{
+   private:
+     int staffID;
+     char staffName[20];
+     char staffEmail[20];
+     char staffNumber[10];
+     char staffUsername[20];
+     char staffPassword[20];
+     RentCar* rentc[SIZE];
+   public:
+      Staff();
+      Staff(int pstaffID, const char pstaffName[], const char pstaffEmail[], const char pstaffNumber[], const char pstaffUsername[], const char pstaffPassword[]);
+void login(const char stfUsername, const char stfPsword );
+void manage( RentCar* prentc);
+~Staff();
+};
+
+//Staff.cpp
+//#include "RentCar.h"
+#pragma once
+#include "Staff.h"
+#include<cstring>
+Staff::Staff()
+{
+    staffID = 0;
+    strcpy(staffName, "");
+    strcpy(staffEmail, "");
+    strcpy(staffNumber, "0000000000");
+    strcpy(staffUsername, "");
+    strcpy(staffPassword, "");
+}
+Staff::Staff(int pstaffID, const char pstaffName[], const char pstaffEmail[], const char pstaffNumber[], const char pstaffUsername[], const char pstaffPassword[])
+   {
+     staffID = pstaffID;
+     strcpy(staffName, pstaffName);
+     strcpy(staffEmail, pstaffEmail);
+     strcpy(staffNumber, pstaffNumber);
+     strcpy(staffUsername, pstaffUsername);
+     strcpy(staffPassword, pstaffPassword);
+   }
+ void Staff::login(const char stfUsername, const char stfPsword)
+   {
+   }
+ void Staff::manage(RentCar* prentc)
+   {
+   }
+   Staff::~Staff()
+   {
+      //Destructor 
+  for (int i = 0; i < SIZE; i++)
+    {
+       delete rentc[i];
+    }
+}
