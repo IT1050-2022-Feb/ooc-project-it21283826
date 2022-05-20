@@ -1,0 +1,126 @@
+//Booking.h
+#pragma once
+#include"Payment.h"
+#define SIZE 2
+class Booking {
+private:
+   char BookID[10];
+   char BookDate[20];
+   char BookDescription[50];
+   double BookPrice;
+   int count = 0;
+   Payment* payment[SIZE];
+public:
+  Booking();
+  Booking(const char pbookID[], const char pbookDate[],const char pbookDescription[],double pbookPrice,int pay1,int pay2);
+void calculateBookPrice(int id, char pType[], double pRentC);
+void displayBookPrice();
+void addBooking();
+~Booking();
+};
+
+//Booking.cpp
+#pragma once
+#include"Payment.h"
+#include"Booking.h"
+#include<cstring>
+Booking::Booking()
+{
+strcpy(BookID, "");
+strcpy(BookDate, "");
+strcpy(BookDescription, "");
+BookPrice = 0;
+}
+Booking::Booking(const char pbookID[],const char pbookDate[], const
+char pbookDescription[], double pbookPrice, int pay1, int pay2)
+{
+strcpy(BookID, pbookID);
+strcpy(BookDate, pbookDate);
+strcpy(BookDescription, pbookDescription);
+BookPrice = 0;
+}
+void Booking::calculateBookPrice(int id, char pType[], double pAmt)
+{
+if (count < SIZE)
+{
+payment[count] = new Payment(id, pType, pAmt);
+count++;
+}
+}
+void Booking::displayBookPrice()
+{
+}
+void Booking::addBooking()
+{
+}
+Booking::~Booking()
+{
+//Destructor 
+for (int i = 0; i < SIZE; i++)
+{
+delete payment[i];
+}
+}
+
+//Renting.h
+#pragma once
+#include"Payment.h"
+#define SIZE 2
+class Renting {
+private:
+    int RenID;
+    char RenDate[20];
+    char RenDescription[50];
+    double RenPrice;
+    int count = 0;
+    Payment* payment[SIZE];
+public:
+    Renting();
+    Renting(int prenID, const char prendate[], const char prendescription[], double prenprice, int pay1, int pay2);
+    void calculateRentPrice(int id, const char pType[], double pRentC);
+     void displayRenPrice();
+     void addRenting();
+     ~Renting();
+};
+
+//Renting.cpp
+#pragma once
+#include "Renting.h"
+#include<cstring>
+Renting::Renting()
+{
+RenID = 0;
+strcpy(RenDate, "");
+strcpy(RenDescription, "");
+RenPrice = 0;
+}
+Renting::Renting(int prenID, const char prendate[], const char prendescription[], double prenprice, int pay1,int pay2)
+{
+RenPrice = prenprice;
+strcpy(RenDate, prendate);
+strcpy(RenDescription, prendescription);
+RenID = prenID;
+}
+void Renting::calculateRentPrice(int id, const char pType[], double
+pAmt)
+{
+if (count < SIZE)
+{
+payment[count] = new Payment(id, pType, pAmt);
+count++;
+}
+}
+void Renting::displayRenPrice()
+{
+}
+void Renting::addRenting()
+{
+}
+Renting::~Renting()
+{
+//Destructor 
+for (int i = 0; i < SIZE; i++)
+{
+delete payment[i];
+}
+}
