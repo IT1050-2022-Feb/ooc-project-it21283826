@@ -1,0 +1,111 @@
+//GuestUser.h
+
+#pragma once
+#include "RentCar.h"
+class GuestUser
+{
+protected:
+   int custID;
+   char custName[20];
+   char custAddress[30];
+   char custEmail[30];
+   char custphoneNumber[10];
+public:
+   GuestUser();
+   GuestUser(int pcustid, const char pcustName[], const char pcustAddress[], const char pcustEmail[] ,const char custPHno[]);
+void searchRentCars(RentCar* pRentC);
+void registerUser();
+virtual void displayDetails();
+~GuestUser();
+};
+
+
+
+//GuestUser.cpp
+
+#pragma once
+#include "GuestUser.h"
+#include <cstring>
+GuestUser::GuestUser()
+{
+custID = 0;
+strcpy(custName, "");
+strcpy(custAddress, "");
+strcpy(custEmail, "");
+strcpy(custphoneNumber, "0000000000");
+}
+GuestUser::GuestUser(int pcustid, const char pcustName[],const char pcustAddress[], const char pcustEmail[], const char custPHno[])
+{
+custID = pcustid;
+strcpy(custName, pcustName);
+strcpy(custAddress, pcustAddress);
+strcpy(custEmail, pcustEmail);
+strcpy(custphoneNumber, custPHno);
+}
+void GuestUser::searchRentCars(RentCar* pRentC)
+ {
+ }
+void GuestUser::registerUser()
+ {
+ }
+void GuestUser::displayDetails()
+ {
+ }
+GuestUser::~GuestUser()
+ {
+    //Destructor 
+ }
+
+//RegisteredCustomer.h 
+
+#pragma once
+#include"GuestUser.h"
+class RegisteredCustomer :public GuestUser
+{
+protected:
+  char custUsername[10];
+  char custPassword[10];
+public:
+   RegisteredCustomer();
+   RegisteredCustomer(const char pcustUsername[], const char pcustPassword[], int pcustid, const char pcustName[],const char pcustAddress[], const char pcustEmail[], const char pcustNo[]);
+void displayDetails();
+void login();
+void logout();
+char checkLoginDetails();
+~RegisteredCustomer();
+};
+
+//RegisteredCustomer.cpp
+
+#pragma once
+#include "RegisteredCustomer.h"
+#include <cstring>
+RegisteredCustomer::RegisteredCustomer()
+{
+    strcpy(custUsername, "");
+    strcpy(custPassword, "");
+}
+RegisteredCustomer::RegisteredCustomer(const char pcustUsername[],const char pcustPassword[], int pcustid,const char pcustName[], const char pcustAddress[], const char pcustEmail[], const char pcustNo[]) : GuestUser(pcustid, pcustName, pcustAddress,pcustEmail,pcustNo)
+{
+   strcpy(custUsername, pcustUsername);
+   strcpy(custPassword, pcustPassword);
+}
+void RegisteredCustomer::displayDetails()
+ {
+ }
+void RegisteredCustomer::login()
+ {
+ }
+void RegisteredCustomer::logout()
+ {
+ }
+char RegisteredCustomer::checkLoginDetails()
+ {
+return 0;
+ }
+RegisteredCustomer::~RegisteredCustomer()
+ {
+    //Destructor 
+ }
+
+
