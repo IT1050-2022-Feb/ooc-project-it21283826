@@ -1,0 +1,53 @@
+#include "Booking.h"
+#include "Renting.h"
+#include "CarOwner.h"
+#include "Buyer.h"
+#include "Staff.h"
+#include "RentCar.h"
+#include "GuestUser.h"
+#include "Payment.h"
+#include "RegisteredCustomer.h"
+#include "Report.h"
+#include <iostream>
+using namespace std;
+
+int main()
+{
+ //---- Object creation ------
+ GuestUser* rg = new RegisteredCustomer(); // Object -RegisteredCustomer class
+ RegisteredCustomer* carowner = new CarOwner(); // Object - seller 
+class
+ RegisteredCustomer* buyer = new Buyer(); // Object - buyer class
+ RentCar* rentc = new RentCar(); // Object - Apartment class
+ Renting* renting = new Renting(); // Object - Selling class
+ Booking* booking = new Booking(); // Object - Booking class
+ Staff* staff = new Staff(); // Object - Staff class
+ Report* report = new Report(); // Object - Report class
+
+ //----Method Calling------
+ rg->login();
+ rg->displayDetails();
+ 
+ carowner->login();
+ carowner->displayCarOwnerDetails();
+ buyer->login();
+ buyer->displayBuyerDetails();
+ rentc->updateRentCDetails();
+ rentc->checkAvailability();
+ renting->addRenting();
+ renting->displayRenPrice();
+ booking->addBooking();
+ booking->displayBookPrice();
+ report->bookingDetailsReport();
+ report->rentingDetailsReport();
+ report->paymentDetailsReport();
+ //----Delete Dynamic objects------
+ delete rg;
+ delete carowner;
+ delete buyer;
+ delete rentc;
+ delete renting;
+ delete booking;
+ delete report;
+ return 0;
+  }
