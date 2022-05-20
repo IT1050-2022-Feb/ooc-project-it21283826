@@ -1,0 +1,53 @@
+//CarOwnwer.h
+
+#pragma once
+#include "RegisteredCustomer.h"
+#include "RentCar.h"
+#define SIZE 5
+class CarOwner :public RegisteredCustomer
+{
+private:
+   int noOfRentCars;
+   RentCar* RentRentC[SIZE];
+public:
+ CarOwner();
+ CarOwner(const char usName[], const char usPwd[], int id, const char name[], const char address[], const char email[], const char telno[], int pnoOfRentCars);
+ void addRentingRentCar(RentCar* pRentRentC);
+ void login();
+ void displayCarOwnerDetails();
+ ~CarOwner();
+};
+
+//CarOwner.cpp
+
+#pragma once
+#include "CarOwner.h"
+#include<cstring>
+{
+noOfRentCars = 0;
+}
+CarOwner::CarOwner(const char usName[], const char usPwd[], int id, 
+const char name[], const char address[], const char email[], const
+char telno[], int pnoOfRentCars) :RegisteredCustomer(usName, 
+usPwd, id, name, address, email, telno)
+{
+noOfRentCars = pnoOfRentCars;
+}
+void CarOwner::addRentingRentCar(RentCar* prentRentC)
+{
+if (noOfRentCars < SIZE)
+{
+strcpy(rentRentC[noOfRentCars]), prentRentC;
+noOfRentCars++;
+}
+}
+void CarOwner::login()
+{
+}
+void CarOwner::displayCarOwnerDetails()
+{
+}
+CarOwner::~CarOwner()
+{
+//Destructor 
+}
