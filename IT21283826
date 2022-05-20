@@ -1,0 +1,114 @@
+//Buyer.h
+
+#pragma once
+#include "RegisteredCustomer.h"
+#include "RentCar.h"
+#define SIZE 5
+class Buyer : public RegisteredCustomer
+{
+private:
+ int noOfRentCars;
+ RentCar* buyRentC[SIZE];
+public:
+ Buyer();
+ Buyer(const char usName[], const char usPwd[], int id, const
+char name[], const char address[], const char email[], const char
+telno[],int pnoOfRentCars);
+ void addBuyingRentCar(RentCar* pbuyRentC);
+ void login();
+ void displayBuyerDetails();
+ ~Buyer();
+};
+
+//buyer.cpp
+
+#pragma once
+#include "Buyer.h" 
+ 
+Buyer::Buyer() 
+{ 
+ 	noOfRentCars = 0; 
+} 
+ 
+Buyer::Buyer(const char usName[], const char usPwd[], int id, const char name[], const char address[], const char email[], const char telno[], int pnoOfRentCars):RegisteredCustomer(usName,usPwd, id,  name,address,email,telno) 
+{ 
+ 	noOfRentCars = pnoOfRentCars; 
+} 
+ 
+void Buyer::addBuyingRentCar(RentCar* pbuyRentC) 
+{ 
+ 	if (noOfRentCars < SIZE) 
+ 	{ 
+ 	 	buyRentC[noOfRentCars] = pbuyRentC; 
+ 	 	noOfRentCars++; 
+ 	} 
+} 
+ 
+void Buyer::login() 
+{ 
+ 
+} 
+ 
+void Buyer::displayBuyerDetails() 
+{ 
+ 
+} 
+ 
+Buyer::~Buyer() 
+{ 
+ 	//Destructor  
+ 	for (int i = 0; i < SIZE; i++) 
+ 	{ 
+ 	 	delete buyRentC[i]; 
+ 	} 
+}
+
+//Payment.h
+
+#pragma once
+#include"Booking.h"
+class Payment
+{
+private:
+   int payID;
+   char payType[20];
+   double payAmount;
+public:
+   Payment();
+   Payment(int pID,const char ppayType[],double ppayAmount);
+void checkPayment();
+void confirmPayment();
+void displayPaymentDetails();
+~Payment();
+};
+
+//payment.cpp
+
+#pragma once
+#include "Payment.h"
+#include<cstring>
+Payment::Payment()
+  {
+     payID = 0;
+     strcpy(payType, "");
+     payAmount = 0;
+  }
+   Payment::Payment(int pID, const char ppayType[],double ppayAmount)
+  {
+    payID = pID;
+    strcpy(payType, ppayType);
+    payAmount = ppayAmount;
+  }
+ void Payment::checkPayment()
+   {
+   }
+  void Payment::confirmPayment()
+  {
+  }
+ void Payment::displayPaymentDetails()
+  {
+  }
+  Payment::~Payment()
+  {
+    //Destructor 
+  }
